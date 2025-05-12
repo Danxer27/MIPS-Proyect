@@ -352,3 +352,5 @@ run -all
 # ** Note: $stop    : C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v(32)
 #    Time: 320 ns  Iteration: 0  Instance: /DataPathTB
 # Break in Module DataPathTB at C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v line 32
+# End time: 23:11:46 on May 11,2025, Elapsed time: 0:25:02
+# Errors: 0, Warnings: 1
