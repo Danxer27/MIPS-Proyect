@@ -1,0 +1,324 @@
+# Compile of DataPath.v was successful.
+# Compile of DPTB.v was successful.
+# Compile of DPTB.v was successful.
+# 2 compiles, 0 failed with no errors.
+vsim work.DataPathTB
+# vsim work.DataPathTB 
+# Start time: 20:16:52 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'addIn1'. The port definition is at: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v(400).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPathTB/DP/ALuAdd File: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v Line: 34
+# ** Error: (vsim-3063) Port 'data1Out' not found in the connected module (4th connection).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPathTB/DP/Muxalu File: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v Line: 96
+# Error loading design
+# End time: 20:16:54 on May 11,2025, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 10
+# Compile of DataPath.v was successful.
+vsim work.DataPathTB
+# vsim work.DataPathTB 
+# Start time: 20:32:45 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.ShifLeft
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+# ** Error: (vsim-3063) Port 'data1Out' not found in the connected module (4th connection).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPathTB/DP/Muxalu File: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v Line: 101
+# Error loading design
+# End time: 20:32:46 on May 11,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 2
+# Compile of DataPath.v was successful.
+vsim work.DataPathTB
+# vsim work.DataPathTB 
+# Start time: 20:35:32 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.ShifLeft
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+# ** Error: (vsim-3063) Port 'data1Out' not found in the connected module (4th connection).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPathTB/DP/Muxalu File: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v Line: 101
+# Error loading design
+# End time: 20:35:33 on May 11,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 2
+# Compile of DataPath.v was successful.
+vsim work.DataPathTB
+# vsim work.DataPathTB 
+# Start time: 20:36:46 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.ShifLeft
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+add wave -position end  sim:/DataPathTB/Clk
+add wave -position end  sim:/DataPathTB/dataOut
+run -all
+#############  Autofindloop Analysis  ###############
+#############  Loop found at time 0 ps ###############
+#   Active process: /DataPathTB/DP/Demux/#IMPLICIT-WIRE(dataOut)#127 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:127
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data2Out)#90 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data1Out)#90 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data2Out)#90 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data1Out)#90 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Muxalu/#IMPLICIT-WIRE(dataOut)#101 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:101
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(Zero_Flag)#109 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(R)#109 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Muxalu/#IMPLICIT-WIRE(dataOut)#101 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:101
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(Zero_Flag)#109 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(R)#109 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Demux/#IMPLICIT-WIRE(dataOut)#127 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:127
+################# END OF LOOP #################
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 0 ps.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 33 of file "data". (Current address [32], address range [0:31])    : C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v(236)
+#    Time: 0 ps  Iteration: 0  Instance: /DataPathTB/DP/Banco
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 0 ps.
+add wave -position end  sim:/DataPathTB/Clk
+add wave -position end  sim:/DataPathTB/dataOut
+run -all
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 0 ps.
+run
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 0 ps.
+run
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 0 ps.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 33 of file "data". (Current address [32], address range [0:31])    : C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v(236)
+#    Time: 0 ps  Iteration: 0  Instance: /DataPathTB/DP/Banco
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 0 ps.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 0 ps.
+# Compile of DataPath.v was successful.
+vsim work.DataPathTB
+# End time: 21:35:57 on May 11,2025, Elapsed time: 0:59:11
+# Errors: 1, Warnings: 2
+# vsim work.DataPathTB 
+# Start time: 21:35:57 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.ShifLeft
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+add wave -position end  sim:/DataPathTB/Clk
+add wave -position end  sim:/DataPathTB/dataOut
+run -all
+# ** Note: $stop    : C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v(32)
+#    Time: 320 ns  Iteration: 0  Instance: /DataPathTB
+# Break in Module DataPathTB at C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v line 32
+# Compile of DataPath.v was successful.
+vsim work.DataPathTB
+# End time: 21:41:26 on May 11,2025, Elapsed time: 0:05:29
+# Errors: 0, Warnings: 2
+# vsim work.DataPathTB 
+# Start time: 21:41:26 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.ShifLeft
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+add wave -position end  sim:/DataPathTB/Clk
+add wave -position end  sim:/DataPathTB/dataOut
+run -all
+#############  Autofindloop Analysis  ###############
+#############  Loop found at time 25 ns ###############
+#   Active process: /DataPathTB/DP/Demux/#IMPLICIT-WIRE(dataOut)#127 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:127
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data2Out)#90 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data1Out)#90 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data2Out)#90 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data1Out)#90 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(Zero_Flag)#109 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(R)#109 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(Zero_Flag)#109 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(R)#109 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Demux/#IMPLICIT-WIRE(dataOut)#127 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:127
+################# END OF LOOP #################
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 25 ns.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 25 ns.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 25 ns.
+# Compile of DataPath.v was successful.
+vsim work.DataPathTB
+# End time: 22:18:00 on May 11,2025, Elapsed time: 0:36:34
+# Errors: 1, Warnings: 2
+# vsim work.DataPathTB 
+# Start time: 22:18:00 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.ShifLeft
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+add wave -position end  sim:/DataPathTB/Clk
+add wave -position end  sim:/DataPathTB/dataOut
+run -all
+# ** Note: $stop    : C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v(32)
+#    Time: 320 ns  Iteration: 0  Instance: /DataPathTB
+# Break in Module DataPathTB at C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v line 32
+# Compile of DataPath.v was successful.
+vsim work.DataPathTB
+# End time: 22:19:32 on May 11,2025, Elapsed time: 0:01:32
+# Errors: 0, Warnings: 2
+# vsim work.DataPathTB 
+# Start time: 22:19:32 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.ShifLeft
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+add wave -position end  sim:/DataPathTB/Clk
+add wave -position end  sim:/DataPathTB/dataOut
+run -all
+#############  Autofindloop Analysis  ###############
+#############  Loop found at time 25 ns ###############
+#   Active process: /DataPathTB/DP/Demux/#IMPLICIT-WIRE(dataOut)#127 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:127
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data2Out)#90 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data1Out)#90 @ sub-iteration 0
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data2Out)#90 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Banco/#IMPLICIT-WIRE(data1Out)#90 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:90
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(Zero_Flag)#109 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(R)#109 @ sub-iteration 1
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(Zero_Flag)#109 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Alulu/#IMPLICIT-WIRE(R)#109 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:109
+#   Active process: /DataPathTB/DP/Demux/#IMPLICIT-WIRE(dataOut)#127 @ sub-iteration 2
+#     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:127
+################# END OF LOOP #################
+# ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 25 ns.

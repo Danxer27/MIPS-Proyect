@@ -1,0 +1,13 @@
+Add $10 $1 $2
+nop
+Addi $10 $10 #10
+nop
+BEQ $10 $11 #3
+nop
+Slt $13 $10 $11
+nop
+Addi $10 $10 #4
+nop
+Sub $12 $10 $0
+nop
+Sw $20 $10 #-5

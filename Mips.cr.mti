@@ -1,0 +1,13 @@
+C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v {1 {vlog -work work -stats=none C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module DataPathTB
+
+Top level modules:
+	DataPathTB
+-- Compiling module DataPathTB
+
+Top level modules:
+	DataPathTB
+
+} {} {}}

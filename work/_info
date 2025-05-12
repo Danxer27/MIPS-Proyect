@@ -1,0 +1,419 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+vAddAR
+Z0 !s110 1747023568
+!i10b 1
+!s100 egUN9899CVM>8RL0oiYmR2
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Ib0]FNE0B`LCUR^H<NZGnR0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/joel_/Documents/GitHub/MIPS-Proyect
+Z4 w1747023550
+Z5 8C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v
+Z6 FC:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v
+!i122 9
+L0 492 9
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1747023568.000000
+!s107 C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+n@add@a@r
+vALU
+R0
+!i10b 1
+!s100 NGPHAOnBVX^ON8Uh[J=]k2
+R1
+Ii^m7`YJeiA20Q=mm`e7em2
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 400 23
+R7
+r1
+!s85 0
+31
+R8
+Z12 !s107 C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v|
+R9
+!i113 1
+R10
+R11
+n@a@l@u
+vAlu_Control
+R0
+!i10b 1
+!s100 g7[4YCOz@9IQgc_LXB08[2
+R1
+I@gQ6C`lbgCB18<a_W@>A31
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 285 27
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@alu_@control
+vAlud
+R0
+!i10b 1
+!s100 PNIA`XHIPn=5@9maHBY;X2
+R1
+ITVdjS<X15V`CcUH;?@dhi2
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 442 9
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@alud
+vAndBr
+R0
+!i10b 1
+!s100 C><M?]3IEiWoAeV0USF`I1
+R1
+IIn6OYh[G5n>1lJmjB?kml1
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 502 13
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@and@br
+vBancRegister
+R0
+!i10b 1
+!s100 R3acOg:=V4iA^zVG3CM?A1
+R1
+IjhhI4mSo>]:a1dP7XzMUU2
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 314 21
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@banc@register
+vController
+R0
+!i10b 1
+!s100 YG25F[?2==ciYglQNda=M1
+R1
+I@e495gd8RYFmzk`hlUTC=1
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 140 143
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@controller
+vDataPath
+R0
+!i10b 1
+!s100 =QoGU2gm_o7TV^UKa5Mg`3
+R1
+I:@B^CA6?8GhTj@4?mBn<Z1
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 3 135
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@data@path
+vDataPathTB
+!s110 1746997067
+!i10b 1
+!s100 GSB026k=4FPl<Hd[bTU]=1
+R1
+IiMKjMBQ77KUFP_528<`MS3
+R2
+R3
+w1746421240
+8C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v
+FC:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v
+!i122 2
+L0 3 33
+R7
+r1
+!s85 0
+31
+!s108 1746997067.000000
+!s107 C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v|
+!i113 1
+R10
+R11
+n@data@path@t@b
+vDemuxo
+R0
+!i10b 1
+!s100 YDnF;DMhK]j9cZ:UbnJd@2
+R1
+IiQSR7WgMAZji28PX:lSQm2
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 365 13
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@demuxo
+vMemory
+R0
+!i10b 1
+!s100 dhcJBRB<dkL1l9[az3^QJ3
+R1
+I8W1>jZ7lV1<BA6;>EYHU72
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 453 15
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@memory
+vMemoryData
+R0
+!i10b 1
+!s100 `@XFI4DP?H2<;O]BMLoR61
+R1
+I31YdL@kH<LUJ:mz4=JWKa1
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 380 18
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@memory@data
+vMux
+R0
+!i10b 1
+!s100 fWn8eW0FY1^NeeGdA6zYU0
+R1
+IIhDXiZOgNT5YfCkm9QY=12
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 336 13
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@mux
+vMuxBanc
+R0
+!i10b 1
+!s100 3DQ;2PY:_X5B`b9^;[f@X3
+R1
+ImU8@YkVTPj3Ym6RkXBL?m3
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 350 13
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@mux@banc
+vPC
+R0
+!i10b 1
+!s100 `Jb]jDGAKmQ:@fi27a8zc3
+R1
+I4041MiAQ2P?CJFfiY@C432
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 428 12
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@p@c
+vShifLeft
+R0
+!i10b 1
+!s100 @T[beL=:^;`N?hK7eDk;z2
+R1
+I6T<ziVK5W<X?h3ekZPW:U2
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 481 9
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@shif@left
+vSignExtend
+R0
+!i10b 1
+!s100 kn^Z>Yj85TRAWEDm[<LM]2
+R1
+Ii:>7i3P_JHK?^GVdKTB641
+R2
+R3
+R4
+R5
+R6
+!i122 9
+L0 470 9
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@sign@extend
