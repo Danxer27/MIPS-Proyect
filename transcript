@@ -322,3 +322,33 @@ run -all
 #     Source: C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v:127
 ################# END OF LOOP #################
 # ** Error (suppressible): (vsim-3601) Iteration limit 5000 reached at time 25 ns.
+# Compile of DataPath.v was successful.
+vsim work.DataPathTB
+# End time: 22:46:44 on May 11,2025, Elapsed time: 0:27:12
+# Errors: 1, Warnings: 3
+# vsim work.DataPathTB 
+# Start time: 22:46:44 on May 11,2025
+# Loading work.DataPathTB
+# Loading work.DataPath
+# Loading work.PC
+# Loading work.Alud
+# Loading work.Memory
+# Loading work.SignExtend
+# Loading work.AddAR
+# Loading work.Mux
+# Loading work.AndBr
+# Loading work.ShifLeft
+# Loading work.Controller
+# Loading work.Alu_Control
+# Loading work.MuxBanc
+# Loading work.BancRegister
+# Loading work.ALU
+# Loading work.MemoryData
+# Loading work.Demuxo
+# A time value could not be extracted from the current line
+add wave -position end  sim:/DataPathTB/Clk
+add wave -position end  sim:/DataPathTB/dataOut
+run -all
+# ** Note: $stop    : C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v(32)
+#    Time: 320 ns  Iteration: 0  Instance: /DataPathTB
+# Break in Module DataPathTB at C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v line 32

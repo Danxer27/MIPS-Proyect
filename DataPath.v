@@ -93,6 +93,7 @@ BancRegister Banco( //Inputs
     .WA(BancMuxOut),
     .DW(cDW),
     .WE(cBRWe),
+    .CLK(CLK),
     //Outputs
     .data1Out(C1_RD1), 
     .data2Out(C2_RD2)
@@ -120,6 +121,7 @@ MemoryData MemData(
     .REn(cRe),
     .dataIn(C2_RD2),
     .addres(C3_AluRes),
+    .CLK(CLK),
     //Output
     .dataOut(CS)
 );
@@ -258,7 +260,7 @@ always @(*) begin
         6'b001010: begin // SLTI
             ALU_op = 3'b011;  
             regDst = 0;
-            Demuxo = 0;
+            Demuxo = 1;
             BRWe = 1;
             ReMD = 0;
             WeMD = 0;
@@ -315,6 +317,7 @@ module BancRegister(
     input [4:0] RA1, RA2, WA,
     input [31:0] DW,
     input WE,
+    input CLK,
     output reg [31:0] data1Out, data2Out
 );
 
@@ -324,10 +327,13 @@ initial begin
     $readmemb("data", mem);
 end
 
-always @ (*) begin
+always @(posedge CLK) begin
     if(WE) begin
-        mem[WA] = DW;
+        mem[WA] <= DW;
     end
+end
+
+always @(*) begin
     data1Out = mem[RA1];
     data2Out = mem[RA2];
 end
@@ -381,17 +387,23 @@ module MemoryData(
     input WEn, REn,
     input [31:0] dataIn, 
     input [31:0] addres,
+    input CLK,
     output reg [31:0] dataOut
 );
 
 reg [31:0] mem [0:127];
 
-always @ (*) begin
+always @(posedge CLK) begin
     if(WEn) begin
-        mem[addres] = dataIn;
+        mem[addres] <= dataIn;
     end
+end
+
+always @(*) begin
     if(REn) begin
         dataOut = mem[addres];
+    end else begin
+        dataOut = 32'b0;
     end
 end
 endmodule
@@ -511,4 +523,4 @@ always @ (*) begin
          andOut = 1'b0;
     end
 end
-endmodule 
+endmodule

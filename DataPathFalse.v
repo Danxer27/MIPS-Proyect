@@ -10,11 +10,12 @@ wire [31:0] instruction;
 
 wire cDemux, cWe, cRe, cZf, cBRWe, cBranch, cRegDst, cAddPcMuxo, cAluSrc;
 wire [2:0] cALU_op;
-wire [3:0] C4_Sel;  // Declarar C4_Sel
+wire cData_Out;
+wire [3:0] C4_Sel;
 wire [31:0] C1_RD1, C2_RD2, C3_AluRes, cDW, CS, cAluMux;
 
-// Eliminar señales duplicadas o innecesarias
-wire [31:0] pcOut, sumOut, cSignex, cAddMuxo, cAddPc, cShiftAdd;
+wire clock;
+wire [31:0] pcIn, pcOut, sumOut, istruction, cSignex, cAddMuxo, cAddPc, cShiftAdd;
 
 wire [4:0] BancMuxOut;
 
@@ -105,7 +106,7 @@ Mux Muxalu (
     .dataOut(cAluMux)
 );
 
-ALU Aluru(
+ALU Alulu(
     .A(C1_RD1),
     .B(cAluMux),
     .ALU_OP(C4_Sel),
@@ -144,92 +145,125 @@ module Controller(
 
 always @(*) begin
     case (Op)
-        6'b000000: begin   // R-type
+        6'b000000: begin   // R     
             ALU_op = 3'b010;
-            Demuxo = 1'b1;      // ALU result to register
-            BRWe = 1'b1;        // Write to register
-            WeMD = 1'b0;        // Don't write to memory
-            ReMD = 1'b0;        // Don't read from memory
-            regDst = 1'b1;      // Destination is rd
-            Branch = 1'b0;      // No branch
-            aluSrc = 1'b0;      // Second operand from register
+            Demuxo = 1'b1;
+            BRWe = 1'b1;   
+            WeMD = 1'b0;   
+            ReMD = 1'b0;
+            regDst = 1'b1;
+            Branch = 1'b0;
+            aluSrc = 1'b0;
         end
 
-        6'b000100: begin  // BEQ
-            ALU_op = 3'b001;    // Subtract for comparison
-            Demuxo = 1'bx;      // Don't care (not writing to register)
-            BRWe = 1'b0;        // Don't write to register
-            WeMD = 1'b0;        // Don't write to memory
-            ReMD = 1'b0;        // Don't read from memory
-            regDst = 1'bx;      // Don't care
-            Branch = 1'b1;      // This is a branch
-            aluSrc = 1'b0;      // Use register for comparison
+        6'b000100: begin  //  BEQ
+            ALU_op = 3'b001;
+            Demuxo = 1'b0;
+            BRWe = 1'b0;   
+            WeMD = 1'b0;   
+            ReMD = 1'b0;
+            regDst = 1'b0;
+            Branch = 1'b1;
+            aluSrc = 1'b0;
         end
 
-        6'b100011: begin  // LW - Load Word
-            ALU_op = 3'b000;    // Add for address calculation
-            Demuxo = 1'b0;      // Memory result to register
-            BRWe = 1'b1;        // Write to register
-            WeMD = 1'b0;        // Don't write to memory
-            ReMD = 1'b1;        // Read from memory
-            regDst = 1'b0;      // Destination is rt
-            Branch = 1'b0;      // No branch
-            aluSrc = 1'b1;      // Use immediate value
+        //  6'b000010: begin  //     
+        //     ALU_op = 3'b010;
+        //     Demuxo = 1'b1;
+        //     BRWe = 1'b1;   
+        //     WeMD = 1'b1;   
+        //     ReMD = 1'b1;
+        //     regDst = 1'b1;
+        //     Branch = 1'b1;
+        //     aluSrc = 1'b0;
+        // end
+
+        // 6'b101011: begin  // SW     
+        //     ALU_op = 3'b000;
+        //     Demuxo = 1'b0;
+        //     BRWe = 1'b0;
+        //     WeMD = 1'b1;   
+        //     ReMD = 1'b0;
+        //     regDst = 1'b0;
+        //     Branch = 1'b0;
+        //     aluSrc = 1'b1;
+        // end
+        
+        //  6'b100011: begin  // LW  
+        //     ALU_op = 3'b000;
+        //     Demuxo = 1'b0;
+        //     BRWe = 1'b1;   
+        //     WeMD = 1'b0;   
+        //     ReMD = 1'b1;
+        //     regDst = 1'b0;
+        //     Branch = 1'b0;
+        //     aluSrc = 1'b1;
+        // end
+
+       6'b001101: begin  // ORI 
+            ALU_op = 3'b100;
+            Demuxo = 1'b1;
+            BRWe = 1'b1;   
+            WeMD = 1'b0;   
+            ReMD = 1'b0;
+            regDst = 1'b0;
+            Branch = 1'b0;
+            aluSrc = 1'b1;
+        end
+        
+        6'b001000: begin  // ADDI 
+            ALU_op = 3'b010;  // Suma
+            Demuxo = 1'b1;
+            BRWe = 1'b1;
+            WeMD = 1'b0;
+            ReMD = 1'b0;
+            regDst = 1'b0;
+            Branch = 1'b0;
+            aluSrc = 1'b1;
         end
 
-        6'b101011: begin  // SW - Store Word
-            ALU_op = 3'b000;    // Add for address calculation
-            Demuxo = 1'bx;      // Don't care (not writing to register)
-            BRWe = 1'b0;        // Don't write to register
-            WeMD = 1'b1;        // Write to memory
-            ReMD = 1'b0;        // Don't read from memory
-            regDst = 1'bx;      // Don't care
-            Branch = 1'b0;      // No branch
-            aluSrc = 1'b1;      // Use immediate value
+        6'b001100: begin  // ANDI 
+            ALU_op = 3'b101;
+            Demuxo = 1'b1;
+            BRWe = 1'b1;
+            WeMD = 1'b0;
+            ReMD = 1'b0;
+            regDst = 1'b0;
+            Branch = 1'b0;
+            aluSrc = 1'b1;
         end
 
-        6'b001101: begin  // ORI
-            ALU_op = 3'b100;    // OR operation
-            Demuxo = 1'b1;      // ALU result to register
-            BRWe = 1'b1;        // Write to register
-            WeMD = 1'b0;        // Don't write to memory
-            ReMD = 1'b0;        // Don't read from memory
-            regDst = 1'b0;      // Destination is rt
-            Branch = 1'b0;      // No branch
-            aluSrc = 1'b1;      // Use immediate value
+        6'b101011: begin  // SW 
+            ALU_op = 3'b010; 
+            Demuxo = 1'bx;
+            BRWe = 1'b0;
+            WeMD = 1'b1;
+            ReMD = 1'b0;
+            regDst = 1'bx;
+            Branch = 1'b0;
+            aluSrc = 1'b1;
         end
 
-        6'b001100: begin  // ANDI (cambiar de ADDI)
-            ALU_op = 3'b101;    // AND operation
-            Demuxo = 1'b1;      // ALU result to register
-            BRWe = 1'b1;        // Write to register
-            WeMD = 1'b0;        // Don't write to memory
-            ReMD = 1'b0;        // Don't read from memory
-            regDst = 1'b0;      // Destination is rt
-            Branch = 1'b0;      // No branch
-            aluSrc = 1'b1;      // Use immediate value
+        6'b100011: begin  // LW 
+            ALU_op = 3'b010;  
+            Demuxo = 1'b0;
+            BRWe = 1'b1;
+            WeMD = 1'b0;
+            ReMD = 1'b1;
+            regDst = 1'b0;
+            Branch = 1'b0;
+            aluSrc = 1'b1;
         end
 
-        6'b001000: begin  // ADDI (cambiar código)
-            ALU_op = 3'b000;    // Add operation
-            Demuxo = 1'b1;      // ALU result to register
-            BRWe = 1'b1;        // Write to register
-            WeMD = 1'b0;        // Don't write to memory
-            ReMD = 1'b0;        // Don't read from memory
-            regDst = 1'b0;      // Destination is rt
-            Branch = 1'b0;      // No branch
-            aluSrc = 1'b1;      // Use immediate value
-        end
-
-        6'b001010: begin  // SLTI
-            ALU_op = 3'b011;    // SLT operation
-            Demuxo = 1'b1;      // ALU result to register
-            BRWe = 1'b1;        // Write to register
-            WeMD = 1'b0;        // Don't write to memory
-            ReMD = 1'b0;        // Don't read from memory
-            regDst = 1'b0;      // Destination is rt
-            Branch = 1'b0;      // No branch
-            aluSrc = 1'b1;      // Use immediate value
+        6'b001010: begin // SLTI
+            ALU_op = 3'b011;  
+            regDst = 0;
+            Demuxo = 0;
+            BRWe = 1;
+            ReMD = 0;
+            WeMD = 0;
+            Branch = 0;
+            aluSrc = 1;
         end
 
         default: begin
@@ -257,22 +291,21 @@ module Alu_Control(
 always @(*) begin
     case (ALUop)
         3'b000:
-            sel = 4'b0010;  // ADD
+            sel = 4'b0010;
         3'b001:
-            sel = 4'b0110;  // SUB
+            sel = 4'b0110;
         3'b010:
             case (funct) 
-                6'b100000: sel = 4'b0010;  // ADD
-                6'b100010: sel = 4'b0110;  // SUB
-                6'b100100: sel = 4'b0000;  // AND
-                6'b100101: sel = 4'b0001;  // OR
-                6'b101010: sel = 4'b0111;  // SLT
-                default:   sel = 4'b0010;  // Default ADD
+            6'b100000: sel = 4'b0010;
+            6'b100010: sel = 4'b0110;
+            6'b100100: sel = 4'b0000;
+            6'b100101: sel = 4'b0001;
+            6'b101010: sel = 4'b0111;
+            default:   sel = 4'b0010;
             endcase
-        3'b011: sel = 4'b0111;  // SLT
-        3'b100: sel = 4'b0001;  // OR
-        3'b101: sel = 4'b0000;  // AND
-        default: sel = 4'b0010; // Default ADD
+        3'b011: sel = 4'b0111; // SLT
+        3'b100: sel = 4'b0001; // OR
+        3'b101: sel = 4'b0000; // AND
     endcase
 end
 endmodule
@@ -292,16 +325,11 @@ initial begin
 end
 
 always @ (*) begin
-    data1Out = mem[RA1];
-    data2Out = mem[RA2];
-end
-
-// Para evitar problemas combinacionales, la escritura debe ser en un bloque separado
-// pero sin reloj puede causar problemas de síntesis
-always @ (*) begin
     if(WE) begin
         mem[WA] = DW;
     end
+    data1Out = mem[RA1];
+    data2Out = mem[RA2];
 end
 endmodule
 
@@ -337,7 +365,7 @@ endmodule
 module Demuxo(
     input dmx,
     input [31:0] dataAluIn, dataMemIn,
-    output reg [31:0] dataOut
+    output reg [31:0] dataOut //outAlu, outMem    
 );
 
 always @(*) begin
@@ -359,22 +387,16 @@ module MemoryData(
 reg [31:0] mem [0:127];
 
 always @ (*) begin
-    if(REn) begin
-        dataOut = mem[addres];
-    end else begin
-        dataOut = 32'bz;  // Alta impedancia cuando no se lee
-    end
-end
-
-// Escritura combinacional (problema potencial)
-always @ (*) begin
     if(WEn) begin
         mem[addres] = dataIn;
+    end
+    if(REn) begin
+        dataOut = mem[addres];
     end
 end
 endmodule
 
-//ALU
+//Alu
 module ALU (
     input [31:0] A,
     input [31:0] B,
@@ -400,19 +422,17 @@ end
 endmodule
 
 // ########################
-// FETCH CYCLE MODULES #######################
+// FETCH CICLE MODULES #######################
 
-//Program Counter
+//Direccionaor
 module PC (
     input clk,
     input [31:0] dirIn,
     output reg [31:0] dirOut
 );
-    
 initial begin
     dirOut = 32'b0;
 end
-
 always @(posedge clk) begin
     dirOut <= dirIn;
 end
@@ -429,7 +449,7 @@ always @(*) begin
 end
 endmodule
 
-//Memoria de Instrucciones
+//Memoria
 module Memory(
     input [31:0] dir,
     output reg [31:0] instructionOut
@@ -441,7 +461,7 @@ initial begin
     $readmemb("insmem", insmem);
 end
 
-always @(*) begin
+always @ (*) begin
     instructionOut = {insmem[dir], insmem[dir+1], insmem[dir+2], insmem[dir+3]};
 end
 endmodule
@@ -452,7 +472,7 @@ module SignExtend (
     output reg [31:0] signOut
 );
 
-always @(*) begin
+always @ (*) begin
     signOut = {{16{signIn[15]}}, signIn};
 end
 endmodule
@@ -463,7 +483,7 @@ module ShifLeft(
     output reg [31:0] shiftOut
 );
 
-always @(*) begin
+always @ (*) begin
     shiftOut = shiftIn << 2;
 end
 endmodule
@@ -484,7 +504,11 @@ module AndBr(
     output reg andOut
 );
 
-always @(*) begin
-    andOut = andIn1 && andIn2;
+always @ (*) begin
+    if(andIn1 && andIn2) begin
+        andOut = 1'b1;
+    end else begin
+         andOut = 1'b0;
+    end
 end
-endmodule
+endmodule 
