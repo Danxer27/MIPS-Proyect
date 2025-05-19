@@ -10,410 +10,602 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 vAddAR
-Z0 !s110 1747025201
+Z0 !s110 1747627211
 !i10b 1
-!s100 W@3OMeMnm02X2e[C^c:;B0
+!s100 32RcNMi7hK_4KEVYj[hG30
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I@oQj3ZchKl_zLJ]<e:QS`2
+Ik;g=lU6kn=KdEBMChgPTM0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dC:/Users/joel_/Documents/GitHub/MIPS-Proyect
-Z4 w1747025118
+Z4 w1747626938
 Z5 8C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v
 Z6 FC:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v
-!i122 10
-L0 504 9
+!i122 42
+L0 649 9
 Z7 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1747025201.000000
-!s107 C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v|
-Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v|
+Z8 !s108 1747627211.000000
+Z9 !s107 C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v|
+Z10 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v|
 !i113 1
-Z10 o-work work
-Z11 tCvgOpt 0
+Z11 o-work work
+Z12 tCvgOpt 0
 n@add@a@r
 vALU
 R0
 !i10b 1
-!s100 X_QiaccFcFL4DKd88jWof2
+!s100 `Yb860hYFJ8zN46]84bCc2
 R1
-IWFmRn0d0H`dE8m[?LklCg0
+IQbA?iA[XAI`a3Ho5aObzc0
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 412 23
+!i122 42
+L0 557 23
 R7
 r1
 !s85 0
 31
 R8
-Z12 !s107 C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v|
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@a@l@u
 vAlu_Control
 R0
 !i10b 1
-!s100 =JlFo2?50dhL]R3f0I:`M2
+!s100 b^N51maOi<FPl>lz<9ihD1
 R1
-IBR<>I[D7>OQG[dze`edj01
+Ioi[<lKMd@_6L4NYGoBE;E0
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 287 27
+!i122 42
+L0 432 27
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@alu_@control
 vAlud
 R0
 !i10b 1
-!s100 DORIgmFJ[AMCmK^okMEk]1
+!s100 g19?58VJ9o47U6>Q5@5L03
 R1
-I1<YghN@MC59bBBBP8@@8d1
+IeLJjOJCOelEMmQEhff:^z2
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 454 9
+!i122 42
+L0 599 9
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@alud
 vAndBr
 R0
 !i10b 1
-!s100 PmYfdHz03G7k_i>RH59YS1
+!s100 _OON=Po0SO_AVFC2gU<?11
 R1
-IA^Z[geSBK9mIGCZIFE^@C3
+IoVkVb1;;:>@X2WZCan`:_3
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 514 13
+!i122 42
+L0 659 13
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@and@br
 vBancRegister
 R0
 !i10b 1
-!s100 ``^^<VMK7MlYmzNCfG=n63
+!s100 VV^cEn:L=edi>?S8RmXG_3
 R1
-IjFI5AoaF8YzCJJ[?`JIzP3
+I0fSA?A>_Pe=jSo73eZKD=3
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 316 25
+!i122 42
+L0 461 25
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@banc@register
 vController
 R0
 !i10b 1
-!s100 E<]7;53igQi_P9<6BA;P23
+!s100 Z^UOY?f<9RjEjE`a@<jGO0
 R1
-IS^2;h5j:8VF13KBVLn6fb1
+I^^@CZh1=?MM_`X4<CPolC2
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 142 143
+!i122 42
+L0 300 130
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@controller
 vDataPath
 R0
 !i10b 1
-!s100 X9Bm=1VM;<:X]dmemFe[T3
+!s100 n?i1eeoPJNQUTfEb:lPR?0
 R1
-IQnDU6F2ME_G<nAH4F9YRD0
+IEDR=Z6QcM7D_?h=M7HS071
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 3 137
+!i122 42
+L0 3 295
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@data@path
 vDataPathTB
-!s110 1746997067
+!s110 1747535442
 !i10b 1
 !s100 GSB026k=4FPl<Hd[bTU]=1
 R1
 IiMKjMBQ77KUFP_528<`MS3
 R2
 R3
-w1746421240
+w1747535292
 8C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v
 FC:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v
-!i122 2
+!i122 23
 L0 3 33
 R7
 r1
 !s85 0
 31
-!s108 1746997067.000000
+!s108 1747535442.000000
 !s107 C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v|
 !i113 1
-R10
 R11
+R12
 n@data@path@t@b
 vDemuxo
 R0
 !i10b 1
-!s100 Vc5[>zW[0<k_oT[z8ng0T1
+!s100 fjoB44k1e?HRgT87;;@R[1
 R1
-IiCHzlC@UQCTO]LbKCgFM13
+I>YNZn?0FHIHMf@BVDi54d2
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 371 13
+!i122 42
+L0 516 13
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@demuxo
+vEXMEM
+R0
+!i10b 1
+!s100 ]FfgnhM7lTKUQKzFk2^D43
+R1
+Imce``f]z3FEeFmZ`:hDk00
+R2
+R3
+R4
+R5
+R6
+!i122 42
+L0 753 24
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@e@x@m@e@m
+vIDEX
+R0
+!i10b 1
+!s100 m;bQHXF7Azkdao?6`O^LH2
+R1
+I94NC:[Tj=?RE;5S?=PBEV3
+R2
+R3
+R4
+R5
+R6
+!i122 42
+L0 721 30
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@i@d@e@x
+vIFID
+R0
+!i10b 1
+!s100 ^9ZE9KIY4nP]DHdERd>9G3
+R1
+Ie`^Vgc[7?;g:49k`gOTXR2
+R2
+R3
+R4
+R5
+R6
+!i122 42
+L0 708 11
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@i@f@i@d
+vJumpAddress
+R0
+!i10b 1
+!s100 `WnZ>z[d^e45z?0ez?G452
+R1
+IYIjeide^3ZZg<Sh:FD[^G2
+R2
+R3
+R4
+R5
+R6
+!i122 42
+L0 675 9
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@jump@address
+vJumpAdress
+Z13 !s110 1747614602
+!i10b 1
+!s100 c>UGB>g<J?OcK_aXQTh]@1
+R1
+IdUXJ;ZY=6Nf6ifEVO2]7D2
+R2
+R3
+Z14 w1747614598
+R5
+R6
+!i122 31
+L0 667 9
+R7
+r1
+!s85 0
+31
+Z15 !s108 1747614602.000000
+R9
+R10
+!i113 1
+R11
+R12
+n@jump@adress
 vMemory
 R0
 !i10b 1
-!s100 IEe0AiUV@]9g<]c<DAYHl0
+!s100 J@;M:?i12eLhn@MF5FiX53
 R1
-IjZP>1l?RX;:OMc[[E:2jG1
+I2?Vc`0Go[zSD`bmEL83ek1
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 465 15
+!i122 42
+L0 610 15
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@memory
 vMemoryData
 R0
 !i10b 1
-!s100 cBm1D9ca_e6ZEieDi4V5M2
+!s100 bZ9fR[D4efW@@DkSiYcA23
 R1
-I;efRiz`Cb3=AH`^X2_j2z0
+Id:[a@NG3JnTBU?L4HaOMf2
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 386 24
+!i122 42
+L0 531 24
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@memory@data
+vMEMWB
+R0
+!i10b 1
+!s100 NUlRKUfVniai_ZLfLEgKn0
+R1
+I>;RMFngJQ]_T0YH7^VV6:3
+R2
+R3
+R4
+R5
+R6
+!i122 42
+L0 779 17
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@m@e@m@w@b
 vMux
 R0
 !i10b 1
-!s100 X<a07Z6X3fQCJ589NIJSQ3
+!s100 L?kfB[;ZmPiH58ETReg;W0
 R1
-IVXPROUh=21EZ0zBBOT5hA3
+IgZffQ99JM6NWIUVlNOYO20
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 342 13
+!i122 42
+L0 487 13
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@mux
+vMux_Jump
+R13
+!i10b 1
+!s100 06nZQX2iIoj^e_4[<A[R]1
+R1
+IMEJGfI8M>D0>=bc5a5Yni1
+R2
+R3
+R14
+R5
+R6
+!i122 31
+L0 677 9
+R7
+r1
+!s85 0
+31
+R15
+R9
+R10
+!i113 1
+R11
+R12
+n@mux_@jump
 vMuxBanc
 R0
 !i10b 1
-!s100 _K]OX^C3[LK]GQl5W1UI23
+!s100 0i[@H@0Sa0_L57dQno0@31
 R1
-Idc?<_RPVO8W8iQmLV6:oE3
+IfRg4jU?^Mi^M0=kID^_Df1
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 356 13
+!i122 42
+L0 501 13
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@mux@banc
+vMuxJump
+R0
+!i10b 1
+!s100 5UgLFcCUc:gH9iLCX4ndz0
+R1
+INBV5RTb]hPXXn97T6@;@51
+R2
+R3
+R4
+R5
+R6
+!i122 42
+L0 685 9
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@mux@jump
 vPC
 R0
 !i10b 1
-!s100 F^`jaAbYmM@eYl1?z56]Q0
+!s100 4CKABRIVk6l@c8Blf=0]A0
 R1
-Ig<Fg5L9@7@fLkcU9Pbm=M2
+I_`_LkGmYoCcPW7C=cS9ZM1
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 440 12
+!i122 42
+L0 585 12
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@p@c
 vShifLeft
 R0
 !i10b 1
-!s100 0@SWJE_40ahm55LS5oN7V0
+!s100 1^Ch;8neVfn6:ZG8^EhG30
 R1
-IPlNkkdIFFC;_oKViVj@4G1
+In^0X[BoOQQLRMGVkHB1C20
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 493 9
+!i122 42
+L0 638 9
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@shif@left
 vSignExtend
 R0
 !i10b 1
-!s100 9Q0Td<]Xe2V6WC48GGl?]3
+!s100 [DdDZUjJIkQgna=jWFB2<1
 R1
-Iz5R7><FgIGS8;Jd:l]FX@2
+I^Qal^mS_liJA8SLTCG1HE0
 R2
 R3
 R4
 R5
 R6
-!i122 10
-L0 482 9
+!i122 42
+L0 627 9
 R7
 r1
 !s85 0
 31
 R8
-R12
 R9
-!i113 1
 R10
+!i113 1
 R11
+R12
 n@sign@extend

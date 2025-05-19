@@ -74,9 +74,9 @@ JumpAddress jump_calc (
 );
 
 MuxJump pc_mux (
-    .PC_plus_4(cPcAdd),
+    .PC_plus_4(cPcAd),      
     .jump_addr(cMEM_JumpAddr),
-    .Jump(cMEM_Jump),
+    .Jump(cJump),                   
     .next_PC(cPCnext) 
 );
 
@@ -101,7 +101,7 @@ Controller Control(//Inputs
     .Demuxo(cID_memToReg), 
     .WeMD(cID_memWrite), 
     .ReMD(cID_memRead),
-    .BRWe(cID_WB),
+    .BRWe(cWB_RegWrite),
     .ALU_op(cID_AluOp),
     .regDst(cID_EX1),
     .Branch(cID_M),
@@ -280,7 +280,7 @@ MEMWB Buffer4(
     .bancMuxOut(cWB_WR)
 );
 
-    // BUFFER 4 EXIT
+    // BUFFER 4 EXIR
 Demuxo Demux(
     .dmx(cWB_memToReg),
     .dataMemIn(cWB_memMux1),
@@ -289,7 +289,7 @@ Demuxo Demux(
     .dataOut(cWB_BancWriteData)
 );
 
-assign DS = cWB_BancWriteData; 
+assign DS = cWB_BancWriteData;
 
 //############# MODULOS #################
 
@@ -400,13 +400,13 @@ always @(*) begin
             jump = 1'b0;
         end
 
-        6'b000010: begin  // JUMP
-            ALU_op = 3'b000;
+        6'b000010: begin // J
+            ALU_op = 3'b000;  
+            regDst = 1'b0;
             Demuxo = 1'b0;
             BRWe = 1'b0;
-            WeMD = 1'b0;
             ReMD = 1'b0;
-            regDst = 1'b0;
+            WeMD = 1'b0;
             Branch = 1'b0;
             aluSrc = 1'b0;
             jump = 1'b1;
@@ -452,7 +452,6 @@ always @(*) begin
         3'b011: sel = 4'b0111; // SLT
         3'b100: sel = 4'b0001; // OR
         3'b101: sel = 4'b0000; // AND
-        default: sel = 4'b0000;
     endcase
 end
 endmodule
@@ -515,14 +514,14 @@ endmodule
 //Demultiplexor Mem / Alu => Registers
 module Demuxo(
     input dmx,
-    input [31:0] dataMemIn, dataAluIn,
-    output reg [31:0] dataOut
+    input [31:0] dataAluIn, dataMemIn,
+    output reg [31:0] dataOut //outAlu, outMem    
 );
 
 always @(*) begin
     case (dmx)
-        1'b0: dataOut = dataMemIn;
-        1'b1: dataOut = dataAluIn;
+        1'b0: dataOut = dataMemIn;               
+        1'b1: dataOut = dataAluIn;        
     endcase
 end
 endmodule
@@ -587,12 +586,10 @@ module PC (
     input [31:0] dirIn,
     output reg [31:0] dirOut
 );
-
-
 initial begin
     dirOut = 32'b0;
 end
-always @(posedge clk ) begin
+always @(posedge clk) begin
     dirOut <= dirIn;
 end
 endmodule
@@ -621,7 +618,7 @@ initial begin
 end
 
 always @ (*) begin
-    instructionOut = {insmem[dir+3], insmem[dir+2], insmem[dir+1], insmem[dir]};
+    instructionOut = {insmem[dir], insmem[dir+1], insmem[dir+2], insmem[dir+3]};
 end
 endmodule
 

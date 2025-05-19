@@ -1,35 +1,8 @@
 C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v {1 {vlog -work work -stats=none C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DPTB.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module DataPathTB
 
 Top level modules:
 	DataPathTB
--- Compiling module DataPathTB
-
-Top level modules:
-	DataPathTB
-
-} {} {}} C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v {1 {vlog -work work -stats=none C:/Users/joel_/Documents/GitHub/MIPS-Proyect/DataPath.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module DataPath
--- Compiling module Controller
--- Compiling module Alu_Control
--- Compiling module BancRegister
--- Compiling module Mux
--- Compiling module MuxBanc
--- Compiling module Demuxo
--- Compiling module MemoryData
--- Compiling module ALU
--- Compiling module PC
--- Compiling module Alud
--- Compiling module Memory
--- Compiling module SignExtend
--- Compiling module ShifLeft
--- Compiling module AddAR
--- Compiling module AndBr
-
-Top level modules:
-	DataPath
 
 } {} {}}

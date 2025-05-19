@@ -13,14 +13,14 @@ wire [31:0] pcOut, cAddPc, cShiftAdd, cAluMux;
 // CABLES BUFFERS
 
 // IF Buffer Conections
-wire [31:0] cIF_fetchAdder, cIF_Instruction_Memory; 
+wire [31:0] cIF_fetchAdder, cIF_Instruction_Memory;
 // ID Buffer Conections
 wire [31:0] cID_fetchAdder, cID_Instruction_Memory, cID_readData1, cID_readData2, cID_signExtend;
 wire [4:0] cID_ins1, cID_ins2;
 wire cID_WB, cID_M, cID_EX1, cID_EX2, cID_memWrite, cID_memRead, cID_memToReg;
 wire [2:0] cID_AluOp;
 // EX Buffer Conections
-wire cEX_WB, cEX_M, cEX_RegDst, cEX_AluSrc, cEX_memWrite, cEX_memRead, cEX_memToReg; 
+wire cEX_WB, cEX_M, cEX_RegDst, cEX_AluSrc, cEX_memWrite, cEX_memRead, cEX_memToReg;
 wire [2:0] cEX_AluOp;
 wire [4:0] cEX_bmux1, cEX_bmux2;
 wire [31:0]  cEX_EX, cEX_fetchAdder, cEX_rData1, cEX_rData2, cEX_signExtend;
@@ -37,15 +37,15 @@ wire cWB_memToReg, cWB_RegWrite;
 wire [31:0] cWB_memMux1, cWB_memMux2, cWB_BancWriteData;
 wire [4:0] cWB_WR;
 
-wire cID_Jump, cEX_Jump, cMEM_Jump;                   
-wire [31:0] cID_JumpAddr, cEX_JumpAddr, cMEM_JumpAddr, cPcAdd, cPCnext;
-
+wire cJump;             // Señal de Jump desde el Control
+wire [31:0] cJumpAddr;          // Dirección de salto calculada
+wire cRegWrite, cMemWrite, cMemRead, cMemToReg, cRegDst, cBranch, cAluSrc, cAluOp_0, cAluOp_1, cAluOp_2;
 
 //Instancias
 
 PC pc(
     .clk(CLK),
-    .dirIn(cPCnext),
+    .dirIn(cAddPc),
     .dirOut(pcOut)
 );
 
@@ -64,20 +64,21 @@ Mux AddPCMuxo(
     .data1In(cIF_fetchAdder),
     .data2In(cMEM_addPcMux),
     //output
-    .dataOut(cPcAdd)
+    .dataOut(cAddPc)
 );
 
+
 JumpAddress jump_calc (
-    .PC_plus_4(cID_fetchAdder),      
-    .instr_index(cID_Instruction_Memory[25:0]), 
-    .jump_addr(cID_JumpAddr)
+    .PC_plus_4(cID_fetchAdder),
+    .instr_index(cID_Instruction_Memory[25:0]),
+    .jump_addr(cJumpAddr)
 );
 
 MuxJump pc_mux (
-    .PC_plus_4(cPcAdd),
-    .jump_addr(cMEM_JumpAddr),
-    .Jump(cMEM_Jump),
-    .next_PC(cPCnext) 
+    .PC_plus_4(cIF_fetchAdder),
+    .jump_addr(cJumpAddr),
+    .Jump(cJump),
+    .next_PC(cAddPc)
 );
 
 
@@ -96,28 +97,28 @@ IFID Buffer1(
     // BUFFER 1 EXIT
 
 Controller Control(//Inputs
-    .Op(cID_Instruction_Memory[31:26]), 
+    .Op(cID_Instruction_Memory[31:26]),
     //Ouputs
-    .Demuxo(cID_memToReg), 
-    .WeMD(cID_memWrite), 
-    .ReMD(cID_memRead),
-    .BRWe(cID_WB),
-    .ALU_op(cID_AluOp),
-    .regDst(cID_EX1),
-    .Branch(cID_M),
-    .aluSrc(cID_EX2),
-    .jump(cID_Jump)
+    .Demuxo(cMemToReg),
+    .WeMD(cMemWrite),
+    .ReMD(cMemRead),
+    .BRWe(cRegWrite),
+    .ALU_op({cAluOp_2, cAluOp_1, cAluOp_0}),
+    .regDst(cRegDst),
+    .Branch(cBranch),
+    .aluSrc(cAluSrc),
+    .jump(cJump)
 );
 
 BancRegister Banco( //Inputs
-    .RA1(cID_Instruction_Memory[25:21]), 
-    .RA2(cID_Instruction_Memory[20:16]), 
+    .RA1(cID_Instruction_Memory[25:21]),
+    .RA2(cID_Instruction_Memory[20:16]),
     .WA(cWB_WR),
     .DW(cWB_BancWriteData),
-    .WE(cWB_RegWrite),
+    .WE(cRegWrite),
     .CLK(CLK),
     //Outputs
-    .data1Out(cID_readData1), 
+    .data1Out(cID_readData1),
     .data2Out(cID_readData2)
 );
 
@@ -132,22 +133,20 @@ SignExtend Signex(
 
 IDEX Buffer2( //inputs
     .clk(CLK),
-    .WBIn(cID_WB),
-    .Min(cID_M),
-    .EX1(cID_EX1),
-    .EX2(cID_EX2),
-    .ExAluOp(cID_AluOp),
-    .memWriteEnIn(cID_memWrite),
-    .memReadEnIn(cID_memRead),
+    .WBIn(cRegWrite),
+    .Min(cBranch),
+    .EX1(cRegDst),
+    .EX2(cAluSrc),
+    .ExAluOp({cAluOp_2, cAluOp_1, cAluOp_0}),
+    .memWriteEnIn(cMemWrite),
+    .memReadEnIn(cMemRead),
     .AddResultIn(cID_fetchAdder),
     .readData1In(cID_readData1),
     .readData2In(cID_readData2),
     .signExtIn(cID_signExtend),
     .instructionMux1In(cID_Instruction_Memory[20:16]),
     .instructionMux2In(cID_Instruction_Memory[15:11]),
-    .memToRegIn(cID_memToReg),
-    .jumpAdd_in(cID_JumpAddr),
-    .jumpIn(cID_Jump),
+    .memToRegIn(cMemToReg),
     //outputs
     .WBout(cEX_WB),
     .Mout(cEX_M),
@@ -162,10 +161,8 @@ IDEX Buffer2( //inputs
     .signExtOut(cEX_signExtend),
     .instructionMux1Out(cEX_bmux1),
     .instructionMux2out(cEX_bmux2),
-    .memToRegOut(cEX_memToReg),
-    .jumpAdd_out(cEX_JumpAddr),
-    .jumpOut(cEX_Jump)
-); 
+    .memToRegOut(cEX_memToReg)
+);
 
     // BUFFER 2 EXIT
 
@@ -193,7 +190,7 @@ ALU Alulu(
     .A(cEX_rData1),
     .B(cAluMux),
     .ALU_OP(C4_Sel),
-    //Ouputs 
+    //Ouputs
     .R(cEX_AluResult),
     .Zero_Flag(cEX_ZF)
 );
@@ -227,8 +224,6 @@ EXMEM Buffer3( //inputs
     .AluResultIn(cEX_AluResult),
     .readData2In(cEX_rData2),
     .BancMuxIn(cEX_bancMuxResult),
-    .jumpAdd_in(cEX_JumpAddr),
-    .jumpIn(cEX_Jump),
     //outputs
     .WBout(cMEM_WB),
     .Mout(cMEM_M),
@@ -239,9 +234,7 @@ EXMEM Buffer3( //inputs
     .memAddress(cMEM_memAdress),
     .memWData(cMEM_memWriteData),
     .AddResOut(cMEM_addPcMux),
-    .BancMuxOut(cMEM_bancMuxResult),
-    .jumpAdd_out(cMEM_JumpAddr),
-    .jumpOut(cMEM_Jump)
+    .BancMuxOut(cMEM_bancMuxResult)
 );
 
     // BUFFER 3 EXIT
@@ -280,7 +273,7 @@ MEMWB Buffer4(
     .bancMuxOut(cWB_WR)
 );
 
-    // BUFFER 4 EXIT
+    // BUFFER 4 EXIR
 Demuxo Demux(
     .dmx(cWB_memToReg),
     .dataMemIn(cWB_memMux1),
@@ -289,7 +282,7 @@ Demuxo Demux(
     .dataOut(cWB_BancWriteData)
 );
 
-assign DS = cWB_BancWriteData; 
+assign DS = cWB_BancWriteData;
 
 //############# MODULOS #################
 
@@ -304,11 +297,11 @@ module Controller(
 
 always @(*) begin
     case (Op)
-        6'b000000: begin   // R     
+        6'b000000: begin   // R
             ALU_op = 3'b010;
             Demuxo = 1'b1;
-            BRWe = 1'b1;   
-            WeMD = 1'b0;   
+            BRWe = 1'b1;
+            WeMD = 1'b0;
             ReMD = 1'b0;
             regDst = 1'b1;
             Branch = 1'b0;
@@ -316,11 +309,11 @@ always @(*) begin
             jump = 1'b0;
         end
 
-        6'b000100: begin  //  BEQ
+        6'b000100: begin   //  BEQ
             ALU_op = 3'b001;
             Demuxo = 1'b0;
-            BRWe = 1'b0;   
-            WeMD = 1'b0;   
+            BRWe = 1'b0;
+            WeMD = 1'b0;
             ReMD = 1'b0;
             regDst = 1'b0;
             Branch = 1'b1;
@@ -328,20 +321,8 @@ always @(*) begin
             jump = 1'b0;
         end
 
-       6'b001101: begin  // ORI 
+        6'b001101: begin   // ORI
             ALU_op = 3'b100;
-            Demuxo = 1'b1;
-            BRWe = 1'b1;   
-            WeMD = 1'b0;   
-            ReMD = 1'b0;
-            regDst = 1'b0;
-            Branch = 1'b0;
-            aluSrc = 1'b1;
-            jump = 1'b0;
-        end
-        
-        6'b001000: begin  // ADDI 
-            ALU_op = 3'b010; 
             Demuxo = 1'b1;
             BRWe = 1'b1;
             WeMD = 1'b0;
@@ -352,7 +333,19 @@ always @(*) begin
             jump = 1'b0;
         end
 
-        6'b001100: begin  // ANDI 
+        6'b001000: begin   // ADDI
+            ALU_op = 3'b010;
+            Demuxo = 1'b1;
+            BRWe = 1'b1;
+            WeMD = 1'b0;
+            ReMD = 1'b0;
+            regDst = 1'b0;
+            Branch = 1'b0;
+            aluSrc = 1'b1;
+            jump = 1'b0;
+        end
+
+        6'b001100: begin   // ANDI
             ALU_op = 3'b101;
             Demuxo = 1'b1;
             BRWe = 1'b1;
@@ -364,8 +357,8 @@ always @(*) begin
             jump = 1'b0;
         end
 
-        6'b101011: begin  // SW 
-            ALU_op = 3'b010; 
+        6'b101011: begin   // SW
+            ALU_op = 3'b010;
             Demuxo = 1'bx;
             BRWe = 1'b0;
             WeMD = 1'b1;
@@ -376,8 +369,8 @@ always @(*) begin
             jump = 1'b0;
         end
 
-        6'b100011: begin  // LW 
-            ALU_op = 3'b010;  
+        6'b100011: begin   // LW
+            ALU_op = 3'b010;
             Demuxo = 1'b0;
             BRWe = 1'b1;
             WeMD = 1'b0;
@@ -389,7 +382,7 @@ always @(*) begin
         end
 
         6'b001010: begin // SLTI
-            ALU_op = 3'b011;  
+            ALU_op = 3'b011;
             regDst = 1'b0;
             Demuxo = 1'b1;
             BRWe = 1'b1;
@@ -400,13 +393,13 @@ always @(*) begin
             jump = 1'b0;
         end
 
-        6'b000010: begin  // JUMP
+        6'b000010: begin // J
             ALU_op = 3'b000;
+            regDst = 1'b0;
             Demuxo = 1'b0;
             BRWe = 1'b0;
-            WeMD = 1'b0;
             ReMD = 1'b0;
-            regDst = 1'b0;
+            WeMD = 1'b0;
             Branch = 1'b0;
             aluSrc = 1'b0;
             jump = 1'b1;
@@ -419,8 +412,10 @@ always @(*) begin
             WeMD = 1'b0;
             ReMD = 1'b0;
             regDst = 1'b0;
-            Branch = 1'b0;
+            Branch =
+        1'b0;
             aluSrc = 1'b0;
+            jump = 1'b0;
         end
 
     endcase
@@ -441,24 +436,23 @@ always @(*) begin
         3'b001:
             sel = 4'b0110;
         3'b010:
-            case (funct) 
-            6'b100000: sel = 4'b0010;
-            6'b100010: sel = 4'b0110;
-            6'b100100: sel = 4'b0000;
-            6'b100101: sel = 4'b0001;
-            6'b101010: sel = 4'b0111;
-            default:   sel = 4'b0010;
+            case (funct)
+                6'b100000: sel = 4'b0010;
+                6'b100010: sel = 4'b0110;
+                6'b100100: sel = 4'b0000;
+                6'b100101: sel = 4'b0001;
+                6'b101010: sel = 4'b0111;
+                default:   sel = 4'b0010;
             endcase
         3'b011: sel = 4'b0111; // SLT
         3'b100: sel = 4'b0001; // OR
         3'b101: sel = 4'b0000; // AND
-        default: sel = 4'b0000;
     endcase
 end
 endmodule
 
 //Banco de Registros
-module BancRegister( 
+module BancRegister(
     input [4:0] RA1, RA2, WA,
     input [31:0] DW,
     input WE,
@@ -487,13 +481,13 @@ endmodule
 module Mux(
     input dmx,
     input [31:0] data1In, data2In,
-    output reg [31:0] dataOut 
+    output reg [31:0] dataOut
 );
 
 always @(*) begin
     case (dmx)
-        1'b0: dataOut = data1In;               
-        1'b1: dataOut = data2In;        
+        1'b0: dataOut = data1In;
+        1'b1: dataOut = data2In;
     endcase
 end
 endmodule
@@ -501,13 +495,13 @@ endmodule
 module MuxBanc(
     input dmx,
     input [4:0] data1In, data2In,
-    output reg [4:0] dataOut   
+    output reg [4:0] dataOut
 );
 
 always @(*) begin
     case (dmx)
-        1'b0: dataOut = data1In;               
-        1'b1: dataOut = data2In;        
+        1'b0: dataOut = data1In;
+        1'b1: dataOut = data2In;
     endcase
 end
 endmodule
@@ -515,8 +509,8 @@ endmodule
 //Demultiplexor Mem / Alu => Registers
 module Demuxo(
     input dmx,
-    input [31:0] dataMemIn, dataAluIn,
-    output reg [31:0] dataOut
+    input [31:0] dataAluIn, dataMemIn,
+    output reg [31:0] dataOut //outAlu, outMem
 );
 
 always @(*) begin
@@ -530,7 +524,7 @@ endmodule
 //Memoria de Datos
 module MemoryData(
     input WEn, REn,
-    input [31:0] dataIn, 
+    input [31:0] dataIn,
     input [31:0] addres,
     input clk,
     output reg [31:0] dataOut
@@ -564,15 +558,15 @@ module ALU (
 
 always @(*) begin
     case (ALU_OP)
-        4'b0000: R = A & B;        
-        4'b0001: R = A | B;        
-        4'b0010: R = A + B;       
-        4'b0110: R = A - B;        
+        4'b0000: R = A & B;
+        4'b0001: R = A | B;
+        4'b0010: R = A + B;
+        4'b0110: R = A - B;
         4'b0111: R = (A < B) ? 32'd1 : 32'd0;
-        4'b1100: R = ~(A | B);        
-        default: R = A;      
+        4'b1100: R = ~(A | B);
+        default: R = A;
     endcase
-    
+
     Zero_Flag = (R == 32'd0) ? 1'b1 : 1'b0;
 end
 
@@ -587,12 +581,10 @@ module PC (
     input [31:0] dirIn,
     output reg [31:0] dirOut
 );
-
-
 initial begin
     dirOut = 32'b0;
 end
-always @(posedge clk ) begin
+always @(posedge clk) begin
     dirOut <= dirIn;
 end
 endmodule
@@ -600,7 +592,7 @@ endmodule
 //Sumador de direcciones
 module Alud(
     input [31:0] dir,
-    output reg [31:0] dirOut 
+    output reg [31:0] dirOut
 );
 
 always @(*) begin
@@ -621,7 +613,7 @@ initial begin
 end
 
 always @ (*) begin
-    instructionOut = {insmem[dir+3], insmem[dir+2], insmem[dir+1], insmem[dir]};
+    instructionOut = {insmem[dir], insmem[dir+1], insmem[dir+2], insmem[dir+3]};
 end
 endmodule
 
@@ -667,7 +659,7 @@ always @ (*) begin
     if(andIn1 && andIn2) begin
         andOut = 1'b1;
     end else begin
-         andOut = 1'b0;
+            andOut = 1'b0;
     end
 end
 endmodule
@@ -685,27 +677,25 @@ end
 endmodule
 
 module MuxJump (
-    input [31:0] PC_plus_4, jump_addr,          
-    input Jump,                      
-    output reg[31:0] next_PC            
+    input [31:0] PC_plus_4, jump_addr,
+    input Jump,
+    output reg[31:0] next_PC
 );
 always @(*) begin
-    next_PC = Jump ? jump_addr : PC_plus_4; 
+    next_PC = Jump ? jump_addr : PC_plus_4;
 end
 endmodule
 
 // module ShiftLeft (
-//     input [25:0] in,     
-//     output [27:0] out      
+//  input [25:0] in,
+//  output [27:0] out
 // );
 // always @(*) begin
-//     out = in << 2;
+//  out = in << 2;
 // end
 // endmodule
 
-
 // ###### BUFFERS ###################
-
     //BUFFER IF/ID
 module IFID(
     input clk,
@@ -721,13 +711,13 @@ endmodule
 
  // BUFFER ID/EX
 module IDEX(
-    input clk, WBIn, Min, memWriteEnIn, memReadEnIn, EX1, EX2, memToRegIn, jumpIn,
+    input clk, WBIn, Min, memWriteEnIn, memReadEnIn, EX1, EX2, memToRegIn,
     input [2:0] ExAluOp,
-    input [31:0] AddResultIn, readData1In, readData2In, signExtIn, jumpAdd_in,
+    input [31:0] AddResultIn, readData1In, readData2In, signExtIn,
     input [4:0] instructionMux1In, instructionMux2In,
-    output reg WBout, Mout, memWriteEnOut, memReadEnOut, memToRegOut, RegDst, AluSrc, jumpOut,
-    output reg [2:0] AluOp, 
-    output reg [31:0] AddResultOut, readData1Out, readData2Out, signExtOut, jumpAdd_out,
+    output reg WBout, Mout, memWriteEnOut, memReadEnOut, memToRegOut, RegDst, AluSrc,
+    output reg [2:0] AluOp,
+    output reg [31:0] AddResultOut, readData1Out, readData2Out, signExtOut,
     output reg [4:0] instructionMux1Out, instructionMux2out
 );
 
@@ -746,18 +736,17 @@ always @(posedge clk) begin
     memWriteEnOut <= memWriteEnIn;
     memReadEnOut <= memReadEnIn;
     memToRegOut <= memToRegIn;
-    jumpAdd_out <= jumpAdd_in;
-    jumpOut <= jumpIn;
+
 end
 endmodule
 
     // BUFFER EX/MEM
 module EXMEM(
-    input WBin, Min, ZFin, clk, memWriteEnIn, memReadEnIn, memToRegIn, jumpIn,
-    input [31:0] AluResultIn, readData2In, AddResIn, jumpAdd_in,
+    input WBin, Min, ZFin, clk, memWriteEnIn, memReadEnIn, memToRegIn,
+    input [31:0] AluResultIn, readData2In, AddResIn,
     input [4:0] BancMuxIn,
-    output reg WBout, Mout, ZFout, memWriteEnOut, memReadEnOut, memToRegOut, jumpOut,
-    output reg [31:0] memAddress, memWData, AddResOut, jumpAdd_out,
+    output reg WBout, Mout, ZFout, memWriteEnOut, memReadEnOut, memToRegOut,
+    output reg [31:0] memAddress, memWData, AddResOut,
     output reg [4:0] BancMuxOut
 );
 
@@ -772,8 +761,6 @@ always @(posedge clk) begin
     memWriteEnOut <= memWriteEnIn;
     memReadEnOut <= memReadEnIn;
     memToRegOut <= memToRegIn;
-    jumpAdd_out <= jumpAdd_in;
-    jumpOut <= jumpIn;
 end
 endmodule
 
@@ -783,7 +770,7 @@ module MEMWB(
     input [31:0] readDataIn, aluDataIn,
     input [4:0] bancMuxIn,
     output reg WBout, memToRegOut,
-    output reg [31:0] mux1out, mux2out, 
+    output reg [31:0] mux1out, mux2out,
     output reg [4:0] bancMuxOut
 );
 

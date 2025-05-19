@@ -22,7 +22,7 @@ def convertir_a_binario(instruccion):
             raise ValueError("Instrucción vacía")
         
         opcode_dict = {
-            "j": "000010", "sw": "101011", "lw": "100011", "addi": "001000", "beq": "000100",
+            "j": "000010", "jal": "000011", "sw": "101011", "lw": "100011", "addi": "001000", "beq": "000100",
             "andi": "001100", "ori": "001101", "xori": "001110", "slti": "001010", "bne": "000101"
         }
         funct_dict = {
@@ -41,11 +41,11 @@ def convertir_a_binario(instruccion):
         elif functionOp in opcode_dict:  # Tipo I y J
             opcode = opcode_dict[functionOp]
 
-            if functionOp == "j":  # Tipo J
+            if functionOp in ["j", "jal"]:  # Tipo J con `jal`
                 if len(partes) < 2:
                     raise ValueError("Instrucción tipo J mal formada")
                 return f"{opcode}{format(int(partes[1][1:]), '026b')}"
-            
+
             if functionOp in ["addi", "andi", "ori", "xori", "slti"]:  # Tipo I con inmediato
                 if len(partes) < 4:
                     raise ValueError(f"Instrucción tipo I mal formada ({functionOp})")
@@ -148,4 +148,3 @@ boton_seleccionar.pack(side=tk.RIGHT)
 
 # Ejecutar la aplicación
 ventana.mainloop()
-
